@@ -6,26 +6,28 @@ var app = new Vue({
     styles: {
       styleObject1: { fontSize: "13px" }
     },
+    brand: "VueRocks",
     product: "Socks",
     description: "A pair of warm, fuzzy socks",
-    image: "./assets/vmSocks-green-onWhite.jpg",
+    selectedVariant: 0,
     altText: "A Pair of Socks",
     link: "https://google.com",
-    quantity: 10,
     onSale: false,
     details: ["80% cotton", "20% pollyester", "Gender-Neutral"],
     variants: [
       {
-        variantID: 1234,
-        variantColor: "#0000ff",
-        variantColorName: "blue",
-        variantImage: "./assets/vmSocks-blue-onWhite.jpg"
+        id: 1234,
+        color: "#0000ff",
+        colorName: "blue",
+        image: "./assets/vmSocks-blue-onWhite.jpg",
+        quantity: 10
       },
       {
-        variantID: 12345,
-        variantColor: "#00ff00",
-        variantColorName: "green",
-        variantImage: "./assets/vmSocks-green-onWhite.jpg"
+        id: 12345,
+        color: "#00ff00",
+        colorName: "green",
+        image: "./assets/vmSocks-green-onWhite.jpg",
+        quantity: 20
       }
     ],
     sizes: [
@@ -43,24 +45,35 @@ var app = new Vue({
   methods: {
     addToCart() {
       this.cart += 1;
-      this.quantity -= 1;
-    },
-    changeVariantImage(img) {
-      this.image = img;
+      this.variants[this.selectedVariant].quantity -= 1;
     },
     removeFromCart() {
       if (this.cart > 0) {
         this.cart -= 1;
-        this.quantity += 1;
+        this.variants[this.selectedVariant].quantity -= 1;
       } else {
         console.log("Cart is Already Empty");
       }
     },
+    changeVariantImage(idx) {
+      this.selectedVariant = idx;
+    }
+  },
+  computed: {
+    title() {
+      return this.brand + ": " + this.product;
+    },
+    getQuantity() {
+      return this.variants[this.selectedVariant].quantity;
+    },
     isInStock() {
-      return this.quantity > 0;
+      return this.getQuantity;
     },
     isCartEmpty() {
       return this.cart <= 0;
+    },
+    image() {
+      return this.variants[this.selectedVariant].image;
     }
   }
 });

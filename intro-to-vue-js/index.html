@@ -6,58 +6,7 @@
   <body>
     <div class="nav-bar"></div>
     <div id="app">
-      <div class="product">
-        <div class="product-image">
-          <a :href="link"><img :src="image" :alt="altText"/></a>
-        </div>
-
-        <div class="product-info">
-          <h1>{{ title }}</h1>
-          <p v-if="isInStock">In Stock - {{ getQuantity }}</p>
-          <p v-else :class="{lineThrough: !isInStock}">Out of Stock</p>
-
-          <span v-if="onSale"> {{ title }} </span>
-
-          <h2>Details</h2>
-          <p>{{ description }}</p>
-          <ul>
-            <li v-for="d in details">{{ d }}</li>
-          </ul>
-
-          <h2>Variants</h2>
-          <div
-            v-for="(variant, index) in variants"
-            :key="variant.id"
-            class="color-box"
-            :style="[styles.styleObject1, { backgroundColor: variant.color }]"
-            @mouseover="changeVariantImage(index)"
-          ></div>
-
-          <h2>Sizes</h2>
-          <ul>
-            <li v-for="size in sizes" :key="size.id">{{ size.value }}</li>
-          </ul>
-
-          <button
-            v-on:click="addToCart()"
-            :disabled="!getQuantity"
-            :class="{ disabledButton: !getQuantity }"
-          >
-            Add to cart
-          </button>
-          <button
-            v-on:click="removeFromCart()"
-            :disabled="isCartEmpty"
-            :class="{disabledButton:isCartEmpty}"
-          >
-            Remove From cart
-          </button>
-
-          <div class="cart">
-            <p>Cart : {{ cart }}</p>
-          </div>
-        </div>
-      </div>
+      <product :premium="premium"></product>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>

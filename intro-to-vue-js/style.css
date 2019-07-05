@@ -10,7 +10,8 @@ body {
   margin-bottom: 15px;
 }
 
-.product {
+.product,
+.variantBox {
   display: flex;
   flex-flow: wrap;
   padding: 1rem;
@@ -36,24 +37,29 @@ img {
 .color-box {
   width: 40px;
   height: 40px;
-  margin-top: 5px;
+  margin: 5px;
+  border-radius: 5px;
 }
 
 .cart {
-  margin-right: 25px;
-  float: right;
-  border: 1px solid #d8d8d8;
-  padding: 5px 20px;
+  margin-left: 5px;
+  border: none;
+  height: 40px;
+  font-size: 14px;
+  background-color: rgb(48, 137, 82);
+  padding: 0 15px;
+  color: white;
+  border-radius: 5px;
 }
 
 button {
-  margin-top: 30px;
+  border-radius: 5px;
+  margin-left: 5px;
   border: none;
   background-color: #1e95ea;
   color: white;
   height: 40px;
-  width: 100px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .disabledButton {
